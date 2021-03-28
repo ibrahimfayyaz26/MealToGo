@@ -2,7 +2,7 @@ import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { View, SafeAreaView, Text, StatusBar, StyleSheet } from "react-native";
 import { Searchbar } from "react-native-paper";
-import Info from "../../components/RestaurantInfo";
+import Card from "../../components/RestaurantCard";
 
 const Restaurant = () => {
   return (
@@ -11,7 +11,7 @@ const Restaurant = () => {
         <Searchbar placeholder="Search" />
       </View>
       <View style={styles.listContainer}>
-        <Info />
+        <Card />
       </View>
       <ExpoStatusBar style="auto" />
     </SafeAreaView>
