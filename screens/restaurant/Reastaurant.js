@@ -1,6 +1,12 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
-import { View, SafeAreaView, Text, StatusBar, StyleSheet } from "react-native";
+import {
+  View,
+  SafeAreaView,
+  FlatList,
+  StatusBar,
+  StyleSheet,
+} from "react-native";
 import { Searchbar } from "react-native-paper";
 import Card from "../../components/RestaurantCard";
 
@@ -11,7 +17,19 @@ const Restaurant = () => {
         <Searchbar placeholder="Search" />
       </View>
       <View style={styles.listContainer}>
-        <Card />
+        <FlatList
+          data={[
+            { name: "1" },
+            { name: "2" },
+            { name: "3" },
+            { name: "4" },
+            { name: "5" },
+            { name: "6" },
+            { name: "7" },
+          ]}
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => <Card />}
+        />
       </View>
       <ExpoStatusBar style="auto" />
     </SafeAreaView>
