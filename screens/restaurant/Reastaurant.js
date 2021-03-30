@@ -1,5 +1,5 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
   SafeAreaView,
@@ -9,8 +9,10 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import Card from "../../components/RestaurantCard";
+import { Rest } from "../../servicws/RestaurantContext";
 
 const Restaurant = () => {
+  const data = useContext(Rest);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.searchContainer}>
@@ -18,16 +20,8 @@ const Restaurant = () => {
       </View>
       <View style={styles.listContainer}>
         <FlatList
-          data={[
-            { name: "1" },
-            { name: "2" },
-            { name: "3" },
-            { name: "4" },
-            { name: "5" },
-            { name: "6" },
-            { name: "7" },
-          ]}
-          keyExtractor={(item) => item.name}
+          data={data.restaurant}
+          keyExtractor={(item) => toString(item)}
           renderItem={({ item }) => <Card />}
         />
       </View>
@@ -42,7 +36,7 @@ const styles = StyleSheet.create({
     padding: 15,
     marginTop: StatusBar.currentHeight,
   },
-  listContainer: { padding: 15, flexGrow: 2 },
+  listContainer: { padding: 15, flexGrow: 2, marginBottom: "30%" },
 });
 
 export default Restaurant;
