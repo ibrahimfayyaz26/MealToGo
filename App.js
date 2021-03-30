@@ -1,11 +1,12 @@
 import React from "react";
 import { View } from "react-native";
-import Restaurant from "./screens/restaurant/Reastaurant";
+import Navigation from "./AppNavigation";
+import { RestContext } from "./servicws/RestaurantContext";
 
 export default function App() {
   return (
-    <View style={{ flex: 1 }}>
-      <Restaurant />
-    </View>
+    <RestContext>
+      <Navigation />
+    </RestContext>
   );
 }

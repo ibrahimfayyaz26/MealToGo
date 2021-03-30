@@ -19,8 +19,8 @@ const RestaurantCard = ({ restaurant = {} }) => {
   } = restaurant;
   const ratingArray = Array.from(new Array(Math.ceil(rating)));
   return (
-    <View style={{ marginTop: 8, padding: 5 }}>
-      <Card elevation={8}>
+    <View style={{ marginTop: 5, padding: 5 }}>
+      <Card style={{ padding: 5 }} elevation={8}>
         <Card.Cover source={{ uri: photos[0] }} />
         <Card.Content>
           <Title>{name}</Title>
