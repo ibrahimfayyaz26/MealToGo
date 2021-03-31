@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 import { locationFetch, refinedLocation } from "./locationService";
 
-export const searchRest = createContext();
+export const SearchRest = createContext();
 
-export const searchRestContext = ({ children }) => {
+export const SearchRestContext = ({ children }) => {
   const [searchRest, setSearchRest] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,6 +16,7 @@ export const searchRestContext = ({ children }) => {
       .then((data) => {
         setSearchRest(data);
         setLoading(false);
+        console.log(searchRest);
       })
       .catch((err) => {
         setLoading(false);
@@ -26,11 +27,11 @@ export const searchRestContext = ({ children }) => {
   useEffect(() => {
     setLoading(true);
 
-    dataFetching(keyword);
+    search(keyword);
   }, []);
 
   return (
-    <searchRest.Provider
+    <SearchRest.Provider
       value={{
         searchRest,
         loading,
@@ -39,6 +40,6 @@ export const searchRestContext = ({ children }) => {
       }}
     >
       {children}
-    </searchRest.Provider>
+    </SearchRest.Provider>
   );
 };

@@ -11,7 +11,7 @@ export const locationFetch = (local) => {
 
 export const refinedLocation = (data) => {
   const newData = camelize(data);
-  const { geometry } = newData.result[0];
+  const { geometry } = newData.results[0];
   const { lat, lng } = geometry.location;
   return {
     lat,
