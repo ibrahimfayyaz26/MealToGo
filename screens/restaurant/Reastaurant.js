@@ -6,13 +6,26 @@ import {
   FlatList,
   StatusBar,
   StyleSheet,
+  Text,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import Card from "../../components/RestaurantCard";
 import { Rest } from "../../servicws/RestaurantContext";
+import { ActivityIndicator, Colors } from "react-native-paper";
 
 const Restaurant = () => {
-  const data = useContext(Rest);
+  const { restaurant, loading, error } = useContext(Rest);
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator
+          size="large"
+          animating={true}
+          color={Colors.red800}
+        />
+      </View>
+    );
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.searchContainer}>
@@ -20,9 +33,9 @@ const Restaurant = () => {
       </View>
       <View style={styles.listContainer}>
         <FlatList
-          data={data.restaurant}
-          keyExtractor={(item) => toString(item)}
-          renderItem={({ item }) => <Card />}
+          data={restaurant}
+          keyExtractor={(item) => item.placeId}
+          renderItem={({ item }) => <Card restaurant={item} />}
         />
       </View>
       <ExpoStatusBar style="auto" />
