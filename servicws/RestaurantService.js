@@ -1,4 +1,4 @@
-import { mocks } from "../data/mock";
+import { mocks, mockImages } from "../data/mock";
 import camelize from "camelize";
 
 export const dataFetch = (location = "37.7749295,-122.4194155") => {
@@ -15,6 +15,9 @@ export const dataFetch = (location = "37.7749295,-122.4194155") => {
 
 export const newData = ({ results }) => {
   const newResult = results.map((item) => {
+    item.photos = item.photos.map((p) => {
+      return mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
+    });
     return {
       ...item,
       isOpenNow: item.opening_hours && item.opening_hours.open_now,
