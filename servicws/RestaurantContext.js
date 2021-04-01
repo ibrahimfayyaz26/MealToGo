@@ -1,5 +1,6 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 import { dataFetch, newData } from "./RestaurantService";
+import { SearchRest } from "./locationContext";
 
 export const Rest = createContext();
 
@@ -8,9 +9,12 @@ export const RestContext = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const dataFetching = () => {
+  const { searchRest } = useContext(SearchRest);
+
+  const dataFetching = (loc) => {
+    setRestaurant([]);
     setTimeout(() => {
-      dataFetch()
+      dataFetch(loc)
         .then(newData)
         .then((data) => {
           setLoading(false);
@@ -18,17 +22,16 @@ export const RestContext = ({ children }) => {
         })
         .catch((error) => {
           setLoading(false);
-
           setError(error);
         });
-    }, 2000);
+    }, 1500);
   };
 
   useEffect(() => {
     setLoading(true);
-
-    dataFetching();
-  }, []);
+    const refined = `${searchRest.lat},${searchRest.lng}`;
+    dataFetching(refined);
+  }, [searchRest]);
 
   return (
     <Rest.Provider
