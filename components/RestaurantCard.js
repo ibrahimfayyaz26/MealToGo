@@ -27,7 +27,14 @@ const RestaurantCard = ({ restaurant = {} }) => {
           <View style={styles.middle}>
             <View style={{ flexDirection: "row" }}>
               {ratingArray.map((ite) => {
-                return <SvgXml key={ite} width="25" height="25" xml={star} />;
+                return (
+                  <SvgXml
+                    key={`hello${ite}${address}${name}`}
+                    width="25"
+                    height="25"
+                    xml={star}
+                  />
+                );
               })}
             </View>
             <View

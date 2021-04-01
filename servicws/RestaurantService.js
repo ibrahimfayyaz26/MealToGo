@@ -20,6 +20,7 @@ export const newData = ({ results }) => {
     });
     return {
       ...item,
+      address: item.vicinity,
       isOpenNow: item.opening_hours && item.opening_hours.open_now,
       isClosedTemporarily: item.business_status === "CLOSED_TEMPORARILY",
     };

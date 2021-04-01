@@ -10,25 +10,27 @@ export const SearchRestContext = ({ children }) => {
   const [keyword, setKeyword] = useState("san francisco");
 
   const search = (searchKeyword) => {
+    setLoading(true);
     setKeyword(searchKeyword);
-    locationFetch(searchKeyword.toLowerCase())
+  };
+
+  useEffect(() => {
+    if (!keyword.length) {
+      return;
+      setLoading(false);
+      setError("No keyword added");
+    }
+    locationFetch(keyword.toLowerCase())
       .then(refinedLocation)
       .then((data) => {
         setSearchRest(data);
         setLoading(false);
-        console.log(searchRest);
       })
       .catch((err) => {
         setLoading(false);
         setError(err);
       });
-  };
-
-  useEffect(() => {
-    setLoading(true);
-
-    search(keyword);
-  }, []);
+  }, [keyword]);
 
   return (
     <SearchRest.Provider
@@ -37,6 +39,7 @@ export const SearchRestContext = ({ children }) => {
         loading,
         error,
         searching: search,
+        keyword,
       }}
     >
       {children}
