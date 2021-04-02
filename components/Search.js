@@ -3,10 +3,10 @@ import { Searchbar } from "react-native-paper";
 import { SearchRest } from "../servicws/locationContext";
 
 export const Search = () => {
-  const [keywordS, setKeyword] = useState(keyword);
   const { searchRest, loading, error, searching, keyword } = useContext(
     SearchRest
   );
+  const [keywordS, setKeyword] = useState(keyword);
 
   return (
     <Searchbar
