@@ -6,14 +6,14 @@ import {
   FlatList,
   StatusBar,
   StyleSheet,
-  Text,
+  TouchableOpacity,
 } from "react-native";
 import Card from "../../components/RestaurantCard";
 import { Rest } from "../../servicws/RestaurantContext";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { Search } from "../../components/Search";
 
-const Restaurant = () => {
+const Restaurant = ({ navigation }) => {
   const { restaurant, loading, error } = useContext(Rest);
 
   return (
@@ -41,7 +41,14 @@ const Restaurant = () => {
           <FlatList
             data={restaurant}
             keyExtractor={(item) => item.placeId}
-            renderItem={({ item }) => <Card restaurant={item} />}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate("Details")}
+              >
+                <Card restaurant={item} />
+              </TouchableOpacity>
+            )}
           />
         </View>
       )}

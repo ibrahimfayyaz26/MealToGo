@@ -29,7 +29,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
               {ratingArray.map((ite) => {
                 return (
                   <SvgXml
-                    key={`hello${ite}${address}${name}`}
+                    key={`${ite}${restaurant.place_id}`}
                     width="25"
                     height="25"
                     xml={star}

@@ -4,8 +4,28 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Restaurant from "./screens/restaurant/Reastaurant";
 import { Ionicons } from "@expo/vector-icons";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
+import RestaurantDetails from "./screens/restaurant/RestaurantDetails";
 
 const tab = createBottomTabNavigator();
+const stack = createStackNavigator();
+
+const RestaurantStack = () => {
+  return (
+    <stack.Navigator
+      headerMode={false}
+      screenOptions={{
+        ...TransitionPresets.ModalPresentationIOS,
+      }}
+    >
+      <stack.Screen name="Restaurant" component={Restaurant} />
+      <stack.Screen name="Details" component={RestaurantDetails} />
+    </stack.Navigator>
+  );
+};
 
 const Map = () => {
   return <Text>hello</Text>;
@@ -36,7 +56,7 @@ const AppNavigation = () => {
           inactiveTintColor: "gray",
         }}
       >
-        <tab.Screen name="Restaurant" component={Restaurant} />
+        <tab.Screen name="Restaurant" component={RestaurantStack} />
         <tab.Screen name="Map" component={Map} />
         <tab.Screen name="Settings" component={Settings} />
       </tab.Navigator>
