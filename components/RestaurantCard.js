@@ -30,10 +30,10 @@ const RestaurantCard = ({ restaurant = {} }) => {
           <Title>{name}</Title>
           <View style={styles.middle}>
             <View style={{ flexDirection: "row" }}>
-              {ratingArray.map((ite) => {
+              {ratingArray.map((_, i) => {
                 return (
                   <SvgXml
-                    key={`${ite}${restaurant.place_id}`}
+                    key={`star-${name}-${i}`}
                     width="25"
                     height="25"
                     xml={star}
