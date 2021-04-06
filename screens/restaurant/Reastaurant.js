@@ -40,13 +40,17 @@ const Restaurant = ({ navigation }) => {
         <View style={styles.listContainer}>
           <FlatList
             data={restaurant}
-            keyExtractor={(item) => item.placeId}
+            keyExtractor={(item) => item.name}
             renderItem={({ item }) => (
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={() => navigation.navigate("Details")}
+                onPress={() =>
+                  navigation.navigate("Details", {
+                    restaurant: item,
+                  })
+                }
               >
-                <Card restaurant={item} />
+                <Card key={item.name} restaurant={item} />
               </TouchableOpacity>
             )}
           />
