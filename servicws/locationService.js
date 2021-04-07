@@ -16,5 +16,6 @@ export const refinedLocation = (data) => {
   return {
     lat,
     lng,
+    viewport: geometry.viewport,
   };
 };

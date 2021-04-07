@@ -9,6 +9,7 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import RestaurantDetails from "./screens/restaurant/RestaurantDetails";
+import Map from "./screens/Map/Map";
 
 const tab = createBottomTabNavigator();
 const stack = createStackNavigator();
@@ -27,9 +28,6 @@ const RestaurantStack = () => {
   );
 };
 
-const Map = () => {
-  return <Text>hello</Text>;
-};
 const Settings = () => {
   return <Text>hello</Text>;
 };
