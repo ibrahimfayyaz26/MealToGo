@@ -14,7 +14,7 @@ import { ActivityIndicator, Colors } from "react-native-paper";
 import { Search } from "../../components/Search";
 
 const Restaurant = ({ navigation }) => {
-  const { restaurant, loading, error } = useContext(Rest);
+  const { restaurant, loading } = useContext(Rest);
 
   return (
     <SafeAreaView style={styles.container}>
