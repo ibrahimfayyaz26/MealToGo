@@ -4,6 +4,7 @@ import { Button, Card, Title, Paragraph } from "react-native-paper";
 import { SvgXml, SvgUri } from "react-native-svg";
 import star from "../assets/star";
 import Open from "../assets/open";
+import Fav from "./FavouriteIcon";
 
 const RestaurantCard = ({ restaurant = {} }) => {
   const {
@@ -25,6 +26,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
         style={{ padding: 5 }}
         elevation={8}
       >
+        <Fav restaurant={restaurant} />
         <Card.Cover source={{ uri: photos[0] }} />
         <Card.Content>
           <Title>{name}</Title>
