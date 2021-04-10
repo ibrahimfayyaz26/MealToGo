@@ -71,7 +71,7 @@ const Map = ({ navigation }) => {
                   }}
                 >
                   <Im
-                    style={{ width: 100, height: 100 }}
+                    style={{ width: 100, height: 100, borderRadius: 10 }}
                     source={{ uri: restaurants.photos[0] }}
                   />
                   <Text>{restaurants.name}</Text>

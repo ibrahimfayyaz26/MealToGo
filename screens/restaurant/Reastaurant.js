@@ -1,5 +1,5 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   SafeAreaView,
@@ -12,15 +12,29 @@ import Card from "../../components/RestaurantCard";
 import { Rest } from "../../servicws/RestaurantContext";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { Search } from "../../components/Search";
+import Fav from "../../components/Fav";
+import { favouriteCon } from "../../servicws/FavouriteContext";
 
 const Restaurant = ({ navigation }) => {
   const { restaurant, loading } = useContext(Rest);
+  const [toggle, setToggle] = useState(false);
+  const { favourite } = useContext(favouriteCon);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.searchContainer}>
-        <Search />
+        <Search toggled={toggle} tog={() => setToggle(!toggle)} />
       </View>
+      {toggle && (
+        <Fav
+          favourites={favourite}
+          press={(restau) =>
+            navigation.navigate("Details", {
+              restaurant: restau,
+            })
+          }
+        />
+      )}
       {loading ? (
         <View
           style={{
