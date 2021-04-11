@@ -8,6 +8,7 @@ const Main = ({ navigation }) => {
       source={require("../../assets/home_bg.jpg")}
       style={styles.container}
     >
+      <Text style={{ fontSize: 30 }}>Meals To Go</Text>
       <View style={styles.buttonContainer}>
         <Button
           icon="lock-open-outline"
@@ -18,7 +19,7 @@ const Main = ({ navigation }) => {
           Login
         </Button>
         <Button
-          icon="lock-open-outline"
+          icon="mail"
           mode="contained"
           onPress={() => navigation.navigate("Register")}
           style={{ margin: 7 }}
@@ -36,9 +37,10 @@ const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignItems: "center" },
   buttonContainer: {
     backgroundColor: "white",
-    width: "45%",
-    height: "15%",
+    width: "53%",
+    height: "17%",
     justifyContent: "center",
-    marginTop: "25%",
+    marginTop: "5%",
+    padding: 12,
   },
 });

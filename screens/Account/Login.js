@@ -1,50 +1,79 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  SafeAreaView,
+  StatusBar,
+} from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { Account } from "../../servicws/AccountContext";
+import { ActivityIndicator, Colors } from "react-native-paper";
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { onLogin } = useContext(Account);
+  const { onLogin, error, loading } = useContext(Account);
 
   const login = () => {
     onLogin(email, password);
   };
 
   return (
-    <ImageBackground
-      source={require("../../assets/home_bg.jpg")}
-      style={styles.container}
-    >
-      <View style={styles.loginContainer}>
-        <TextInput
-          label="Email"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-          mode="outlined"
-          style={{ marginBottom: 20 }}
-          keyboardType="email-address"
-        />
-        <TextInput
-          label="Password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          mode="outlined"
-          secureTextEntry
-          style={{ marginTop: 5 }}
-        />
+    <SafeAreaView style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+      <ImageBackground
+        source={require("../../assets/home_bg.jpg")}
+        style={styles.container}
+      >
+        <View style={styles.loginContainer}>
+          <TextInput
+            label="Email"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+            mode="outlined"
+            style={{ marginBottom: 20 }}
+            keyboardType="email-address"
+          />
+          <TextInput
+            label="Password"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            mode="outlined"
+            secureTextEntry
+            style={{ marginTop: 5 }}
+          />
+          {error && (
+            <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>
+          )}
+          {!loading ? (
+            <Button
+              icon="lock-open-outline"
+              mode="contained"
+              onPress={() => login()}
+              style={{ margin: 10, marginTop: 25 }}
+            >
+              Login
+            </Button>
+          ) : (
+            <ActivityIndicator
+              animating={true}
+              size="large"
+              color={Colors.blue300}
+            />
+          )}
+        </View>
         <Button
-          icon="lock-open-outline"
           mode="contained"
-          onPress={() => login()}
-          style={{ margin: 10, marginTop: 25 }}
+          onPress={() => navigation.goBack()}
+          style={{ marginTop: 35 }}
         >
-          Login
+          Go Back
         </Button>
-      </View>
-    </ImageBackground>
+        <View style={{ height: 100 }} />
+      </ImageBackground>
+    </SafeAreaView>
   );
 };
 
@@ -55,8 +84,8 @@ const styles = StyleSheet.create({
   loginContainer: {
     backgroundColor: "white",
     width: "80%",
-    height: "30%",
+    height: "35%",
     justifyContent: "center",
-    padding: 10,
+    padding: 15,
   },
 });
