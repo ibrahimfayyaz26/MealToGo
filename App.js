@@ -1,8 +1,5 @@
 import React from "react";
 import Navigation from "./Navigation/AppNavigation";
-import { SearchRestContext } from "./servicws/locationContext";
-import { RestContext } from "./servicws/RestaurantContext";
-import { FavouriteProvider } from "./servicws/FavouriteContext";
 import { AccountContext } from "./servicws/AccountContext";
 import * as firebase from "firebase";
 
@@ -22,13 +19,7 @@ if (firebase.apps.length == 0) {
 export default function App() {
   return (
     <AccountContext>
-      <FavouriteProvider>
-        <SearchRestContext>
-          <RestContext>
-            <Navigation />
-          </RestContext>
-        </SearchRestContext>
-      </FavouriteProvider>
+      <Navigation />
     </AccountContext>
   );
 }
