@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { Text, Button, SafeAreaView, View } from "react-native";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Restaurant from "../screens/restaurant/Reastaurant";
 import { Ionicons } from "@expo/vector-icons";
@@ -9,10 +8,12 @@ import {
 } from "@react-navigation/stack";
 import RestaurantDetails from "../screens/restaurant/RestaurantDetails";
 import Map from "../screens/Map/Map";
-import { Account } from "../servicws/AccountContext";
 import { SearchRestContext } from "../servicws/locationContext";
 import { RestContext } from "../servicws/RestaurantContext";
 import { FavouriteProvider } from "../servicws/FavouriteContext";
+import Settings from "../screens/Setting/Setting";
+import Favourite from "../screens/Setting/Favourite";
+import Camera from "../screens/Setting/Camera";
 
 const tab = createBottomTabNavigator();
 const stack = createStackNavigator();
@@ -31,15 +32,33 @@ const RestaurantStack = () => {
   );
 };
 
-const Settings = () => {
-  const { onLogout } = useContext(Account);
+const SettingStack = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Settings</Text>
-        <Button title="logout" onPress={() => onLogout()} />
-      </View>
-    </SafeAreaView>
+    <stack.Navigator>
+      <stack.Screen
+        options={{ header: () => null }}
+        name="Setting"
+        component={Settings}
+      />
+      <stack.Screen
+        options={{
+          headerTitleAlign: "center",
+          headerTitle: "Favourites",
+          headerTintColor: "red",
+        }}
+        name="Favourite"
+        component={Favourite}
+      />
+      <stack.Screen
+        options={{
+          headerTitleAlign: "center",
+          headerTitle: "Favourites",
+          headerTintColor: "red",
+        }}
+        name="Camera"
+        component={Camera}
+      />
+    </stack.Navigator>
   );
 };
 
@@ -69,7 +88,7 @@ const Navigation = () => {
           >
             <tab.Screen name="Restaurant" component={RestaurantStack} />
             <tab.Screen name="Map" component={Map} />
-            <tab.Screen name="Settings" component={Settings} />
+            <tab.Screen name="Settings" component={SettingStack} />
           </tab.Navigator>
         </RestContext>
       </SearchRestContext>

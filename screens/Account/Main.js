@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { Button } from "react-native-paper";
+import LottieView from "lottie-react-native";
 
 const Main = ({ navigation }) => {
   return (
@@ -8,6 +9,20 @@ const Main = ({ navigation }) => {
       source={require("../../assets/home_bg.jpg")}
       style={styles.container}
     >
+      <View
+        style={{
+          width: "100%",
+          height: "40%",
+        }}
+      >
+        <LottieView
+          source={require("../../assets/watermalon.json")}
+          autoPlay
+          loop
+          key="animation"
+          resizeMode="cover"
+        />
+      </View>
       <Text style={{ fontSize: 30 }}>Meals To Go</Text>
       <View style={styles.buttonContainer}>
         <Button
