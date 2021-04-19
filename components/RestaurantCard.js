@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { Button, Card, Title, Paragraph } from "react-native-paper";
-import { SvgXml, SvgUri } from "react-native-svg";
+import { Card, Title, Paragraph } from "react-native-paper";
+import { SvgXml } from "react-native-svg";
 import star from "../assets/star";
 import Open from "../assets/open";
 import Fav from "./FavouriteIcon";
