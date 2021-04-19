@@ -52,8 +52,7 @@ const SettingStack = () => {
       <stack.Screen
         options={{
           headerTitleAlign: "center",
-          headerTitle: "Favourites",
-          headerTintColor: "red",
+          headerTitle: "Camera",
         }}
         name="Camera"
         component={Camera}

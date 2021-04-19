@@ -11,8 +11,8 @@ const RestaurantDetails = ({ route }) => {
   const [drinksExpanded, setDrinksExpanded] = useState(false);
   return (
     <SafeAreaView>
-      <RestaurantCard restaurant={restaurant} />
       <ScrollView>
+        <RestaurantCard restaurant={restaurant} />
         <List.Accordion
           title="Breakfast"
           left={(props) => <List.Icon {...props} icon="bread-slice" />}
